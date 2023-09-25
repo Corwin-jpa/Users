@@ -11,7 +11,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/users")
 @RequiredArgsConstructor
-public class Controller {
+public class UserController {
     private final Service service;
 
     @GetMapping("/{id}")
@@ -20,8 +20,8 @@ public class Controller {
     }
 
     @PostMapping
-    public void saveUser(@RequestBody User user) throws Exception {
-        service.saveUser(user);
+    public String saveUser(@RequestBody User user) throws Exception {
+        return service.saveUser(user);
     }
     
     @GetMapping
@@ -30,12 +30,14 @@ public class Controller {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Integer id){
-        service.deleteUser(id);
+    public String deleteUser(@PathVariable Integer id){
+        return service.deleteUser(id);
     }
 
     @PutMapping("/{id}")
     public String updateUser(@PathVariable Integer id, @RequestBody User user){
         return service.updateUser(id,user);
     }
+
+
 }

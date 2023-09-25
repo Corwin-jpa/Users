@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @org.springframework.stereotype.Repository
-public interface UsersRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
     @Override
     List<User> findAll();
 }

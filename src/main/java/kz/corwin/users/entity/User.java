@@ -2,6 +2,8 @@ package kz.corwin.users.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,6 +13,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "users")
+@SQLDelete(sql = "UPDATE users SET deleted = true WHERE user_id=?")
+@Where(clause = "deleted=false")
 @Getter
 @Setter
 public class User {
@@ -34,9 +38,12 @@ public class User {
     @Column(name="relationship_status")
     private String relationshipStatus;
 
+    @Column(name="deleted")
+    private Boolean deleted = Boolean.FALSE;
+
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscriber")
 //    private List<User> subscribers;
-//
+
 //    @OneToOne (optional=false, mappedBy="publisher")
 //    private User user;
 
