@@ -1,9 +1,8 @@
 package kz.corwin.users.service;
 
 import kz.corwin.users.entity.Subscription;
-import kz.corwin.users.entity.SubscriptionId;
 import kz.corwin.users.entity.User;
-import kz.corwin.users.repository.SubscriptionRepository;
+import kz.corwin.users.repository.SubscriptionsRepository;
 import kz.corwin.users.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,16 +11,15 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
-import java.security.InvalidKeyException;
 import java.util.List;
 
 @org.springframework.stereotype.Service
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class ServiceImpl implements Service {
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final SubscriptionRepository subscriptionRepository;
+    private final SubscriptionsRepository subscriptionsRepository;
 
     @Override
     @Transactional
@@ -60,39 +58,7 @@ public class ServiceImpl implements Service {
         return String.format("Пользователь %s успешно изменен",newUser.getSurname());
     }
 
-    public String saveSubscription (Subscription subscription){
-        if (subscription.getPublisherId()==subscription.getSubscriberId()){
-            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        User user = userRepository.findById(subscription.getPublisherId()).get();
-        if (user.getDeleted()==Boolean.TRUE){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        User subUser = userRepository.findById(subscription.getSubscriberId()).get();
-        if (subUser.getDeleted()==Boolean.TRUE){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        Subscription newSubscription = new Subscription();
-        newSubscription.setPublisherId(subscription.getPublisherId());
-        newSubscription.setSubscriberId(subscription.getSubscriberId());
 
-        subscriptionRepository.save(newSubscription);
-
-        return String.format("Пользователь %s успешно подписался на пользователя %s",newSubscription.getSubscriberId(),newSubscription.getPublisherId());
-
-    }
-
-    public List<Subscription> getSubs(int id) {
-        return subscriptionRepository.getSubs(id);
-    }
-
-    public String deleteSub(Subscription subscription){
-        Subscription deletedSubscription = new Subscription();
-        deletedSubscription.setPublisherId(subscription.getPublisherId());
-        deletedSubscription.setSubscriberId(subscription.getSubscriberId());
-        subscriptionRepository.delete(subscription);
-        return String.format("Пользователь %s больше не подписан на пользователя %s",deletedSubscription.getSubscriberId(),deletedSubscription.getPublisherId());
-    }
 
 
 }

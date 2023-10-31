@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface SubscriptionRepository extends JpaRepository<Subscription, SubscriptionId> {
+public interface SubscriptionsRepository extends JpaRepository<Subscription, SubscriptionId> {
 
     @Query(value = "select subscriptions.publisher_id, subscriptions.subscriber_id from subscriptions \n "+
             "where subscriptions.publisher_id = :publisherId",nativeQuery = true)
