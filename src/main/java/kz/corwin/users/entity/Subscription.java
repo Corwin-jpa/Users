@@ -12,6 +12,13 @@ import javax.persistence.*;
 @Setter
 public class Subscription {
 
+    public Subscription(int publisherId, int subscriberId) {
+        this.publisherId = publisherId;
+        this.subscriberId = subscriberId;
+    }
+
+    public Subscription() {}
+
     @Id
     @Column(name = "publisher_id",nullable=false)
     private int publisherId;

@@ -15,7 +15,7 @@ import java.util.List;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class SubscriptiobsServiceImpl implements SubscriptionsService {
+public class SubscriptionsServiceImpl implements SubscriptionsService {
     private final UserRepository userRepository;
     private final SubscriptionsRepository subscriptionsRepository;
 
@@ -23,14 +23,14 @@ public class SubscriptiobsServiceImpl implements SubscriptionsService {
         if (subscription.getPublisherId()==subscription.getSubscriberId()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        User user = userRepository.findById(subscription.getPublisherId()).get();
-        if (user.getDeleted()==Boolean.TRUE){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        User subUser = userRepository.findById(subscription.getSubscriberId()).get();
-        if (subUser.getDeleted()==Boolean.TRUE){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
+//        User user = userRepository.findById(subscription.getPublisherId()).get();
+//        if (user.getDeleted()==Boolean.TRUE){
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+//        }
+//        User subUser = userRepository.findById(subscription.getSubscriberId()).get();
+//        if (subUser.getDeleted()==Boolean.TRUE){
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+//        }
         Subscription newSubscription = new Subscription();
         newSubscription.setPublisherId(subscription.getPublisherId());
         newSubscription.setSubscriberId(subscription.getSubscriberId());

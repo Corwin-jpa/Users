@@ -20,7 +20,7 @@ public class UserController {
 
     @PostMapping
     public String saveUser(@RequestBody User user) throws Exception {
-        return userService.saveUser(user);
+         return userService.saveUser(user);
     }
     
     @GetMapping
@@ -37,6 +37,5 @@ public class UserController {
     public String updateUser(@PathVariable Integer id, @RequestBody User user){
         return userService.updateUser(id,user);
     }
-
 
 }

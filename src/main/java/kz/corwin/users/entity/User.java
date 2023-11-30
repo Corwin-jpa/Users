@@ -18,6 +18,31 @@ import java.util.UUID;
 @Getter
 @Setter
 public class User {
+    public User(Integer id, String username, String surname, String country, LocalDate dateOfBirdth, String relationshipStatus, Boolean deleted) {
+        this.id = id;
+        this.username = username;
+        this.surname = surname;
+        this.country = country;
+        this.dateOfBirdth = dateOfBirdth;
+        this.relationshipStatus = relationshipStatus;
+        this.deleted = deleted;
+    }
+
+    public User(){
+
+    }
+
+    public User(Integer id, String username, String surname) {
+        this.id = id;
+        this.username = username;
+        this.surname = surname;
+    }
+
+    public User(String username, String surname) {
+        this.username = username;
+        this.surname = surname;
+    }
+
     @Id
     @Column(name = "user_id",nullable=false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

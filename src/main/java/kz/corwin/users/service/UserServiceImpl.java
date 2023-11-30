@@ -19,11 +19,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final SubscriptionsRepository subscriptionsRepository;
 
     @Override
     @Transactional
-    public String saveUser(User user)  {
+    public String saveUser(User user)   {
         userRepository.save(user);
         return String.format("Пользователь %s %s успешно добавлен",user.getSurname(),user.getUsername());
     }
