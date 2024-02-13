@@ -1,6 +1,5 @@
 package kz.corwin.users.entity;
 
-import javax.persistence.Column;
 import java.io.Serializable;
 
 public class SubscriptionId implements Serializable {

@@ -1,6 +1,5 @@
 package kz.corwin.users.controller;
 
-import io.restassured.RestAssured;
 import kz.corwin.users.entity.User;
 import kz.corwin.users.repository.UserRepository;
 import org.junit.jupiter.api.*;
@@ -50,19 +49,12 @@ class UserControllerTest {
         postgres.stop();
     }
 
-    //
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
         registry.add("spring.datasource.url", postgres::getJdbcUrl);
         registry.add("spring.datasource.username", postgres::getUsername);
         registry.add("spring.datasource.password", postgres::getPassword);
     }
-//
-//    @BeforeEach
-//    void setUp() {
-//        RestAssured.baseURI = "http://localhost:" + port;
-//        userRepository.deleteAll();
-//    }
 
     @Test
     public void testUserEndpoints() {

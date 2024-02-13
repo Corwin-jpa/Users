@@ -2,7 +2,6 @@ package kz.corwin.users.controller;
 
 import kz.corwin.users.entity.Subscription;
 import kz.corwin.users.service.SubscriptionsService;
-import kz.corwin.users.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +11,6 @@ import java.util.List;
 @RequestMapping(value = "/subscriptions")
 @RequiredArgsConstructor
 public class SubscriptionsController {
-    private final UserService userService;
     private final SubscriptionsService subscriptionsService;
 
     @PostMapping
